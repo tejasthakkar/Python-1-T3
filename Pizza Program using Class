@@ -1,0 +1,61 @@
+class Pizza:
+    def __init__(self, size, toppings, cheese):
+        self.size = size
+        self.toppings = toppings
+        self.cheese = cheese
+        
+    def price(self):
+        self.cost = 0
+        if self.size == 'small':
+            self.cost += 50
+        elif self.size == 'medium':
+            self.cost += 100
+        else:
+            self.cost += 200
+        topping_prices_20 = ['corn', 'tomato', 'onion', 'capsicum']
+        topping_prices_50 = ['mushroom', 'olives', 'broccoli']
+        for topping in self.toppings:
+            if topping in topping_prices_20:
+                self.cost += 20
+            else:
+                self.cost += 50
+        #for cheese
+        self.cost += 50 * len(self.cheese)
+        return self.cost
+
+class Order:
+    def __init__(self, name, customerid):
+        self.name = name
+        self.customerid = customerid
+
+    def order(self, n):
+        self.pizzas = [] 
+        for i in range(n):
+            toppings = []
+            cheese = []
+            print('Customize Pizza',i+1)
+            size = input('Select size(small/medium/large): ')
+            t = int(input('How many toppings(number): '))
+            for i in range(t):
+                toppings.append(input('Enter toppings(corn,tomato,onion,capsicum,mushroom,olives,brocolli): '))
+            t = int(input('How many type of cheese(number): '))
+            for i in range(t):
+                cheese.append(input('Enter cheese(mozarella,feta,cheddar): '))
+            self.pizzas.append(Pizza(size, toppings, cheese))
+
+    def bill(self):
+        self.total = 0
+        count = 1
+        for p in self.pizzas:
+            print('Pizza', count)
+            print("Size:",p.size)
+            print("Toppings:",p.toppings)
+            print("Cheese:",p.cheese)
+            self.total += p.price()
+            count += 1
+        print('Total bill amount:', self.total)
+        
+number=int(input("How many pizzas you want to order: "))
+order1 = Order('Tejas', 1)
+order1.order(number)
+order1.bill()
