@@ -1,0 +1,37 @@
+class Store:
+    def __init__(self,n):
+        self.item_code=[]
+        self.price=[]
+        self.n=n
+    def get_data(self):
+#         n=int(input("enter no of items: "))
+        for i in range(self.n):
+            self.item_code.append(int(input("enter code of item: ")))
+            self.price.append(int(input("enter cost of item: ")))
+    def display_data(self):
+        print("Item Code \t Price")
+        for i in range(self.n):
+            print(self.item_code[i],"\t\t ",self.price[i])
+        
+    def calculate_bill(self,quant):
+        total_amount=0
+        for i in range(self.n):
+            total_amount+=(self.price[i]*quant[i])
+        print("************************Bill**********************")
+        print("ITEM \t PRICE \t QUANTITY \t SUBTOTAL")
+        for i in range(self.n):
+            print(self.item_code[i],"\t",self.price[i],"\t",quant[i],"\t\t",
+                  self.price[i]*quant[i])        
+        print("**************************************")
+        print("Total= ",total_amount)
+                
+n=int(input("enter no of items: "))                
+s1=Store(n)
+s1.get_data()
+s1.display_data()
+q=[]
+print("Enter quantity of each item: ")
+for i in range(n):
+    q.append(int(input("Enter quantity of item {} : ".format(i+1))))
+    
+s1.calculate_bill(q)
