@@ -1,0 +1,43 @@
+class Product:
+
+    def __init__(self, name, stock, price):
+        self.name = name
+        self.stock = stock
+        self.price = price
+
+    def get_price(self, number_to_be_bought):
+        discount = 0
+        if number_to_be_bought < 10:
+            pass
+        elif 10 <= number_to_be_bought < 99:
+            discount = 10
+        else:
+            discount = 20
+        price = (100 - discount) / 100 * self.price
+        return price * number_to_be_bought
+
+    def make_purchase(self, quantity):
+        self.stock -= quantity
+        
+name = input('Name of Product: ')
+stock = int(input('Stock of items: '))
+price = int(input("Price per piece: "))
+
+# name, stock, price = 'shoes', 200, 100
+
+shoes = Product(name, stock, price)
+
+q = int(input('Quantity of product you want to buy: '))
+print(f'cost for {q} {shoes.name} = {shoes.get_price(q)}')
+shoes.make_purchase(q)
+print(f'remaining stock: {shoes.stock}\n')
+
+q = int(input('Quantity of product you want to buy: '))
+print(f'cost for {q} {shoes.name} = {shoes.get_price(q)}')
+shoes.make_purchase(q)
+print(f'remaining stock: {shoes.stock}\n')
+
+q = int(input('Quantity of product you want to buy: '))
+print(f'cost for {q} {shoes.name} = {shoes.get_price(q)}')
+shoes.make_purchase(q)
+print(f'remaining stock: {shoes.stock}\n')
